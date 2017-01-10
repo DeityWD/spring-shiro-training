@@ -5,7 +5,7 @@
 	<artifactId>spring-shiro-training</artifactId>
 	<packaging>war</packaging>
 	<version>1.2.0</version>
-	<name>spring-shiro-training Maven Webapp</name>
+	<name>jd-accounts</name>
 	<url>http://shiro.dreamlu.net</url>
 
 	<properties>

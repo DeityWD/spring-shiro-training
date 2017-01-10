@@ -61,7 +61,7 @@ CREATE TABLE `resource` (
 -- ----------------------------
 -- Records of resource
 -- ----------------------------
-INSERT INTO `resource` VALUES ('1', '权限管理', '', null, '系统管理', 'fi-folder', null, '0', '0', '0', '2014-02-19 01:00:00');
+INSERT INTO `resource` VALUES ('1', '权限管理', '', null, '系统管理', 'fi-folder', null, '90', '0', '0', '2014-02-19 01:00:00');
 INSERT INTO `resource` VALUES ('11', '资源管理', '/resource/manager', 'ajax', '资源管理', 'fi-database', '1', '1', '0', '0', '2014-02-19 01:00:00');
 INSERT INTO `resource` VALUES ('12', '角色管理', '/role/manager', 'ajax', '角色管理', 'fi-torso-business', '1', '2', '0', '0', '2014-02-19 01:00:00');
 INSERT INTO `resource` VALUES ('13', '用户管理', '/user/manager', 'ajax', '用户管理', 'fi-torsos-all', '1', '3', '0', '0', '2014-02-19 01:00:00');
@@ -83,7 +83,7 @@ INSERT INTO `resource` VALUES ('141', '列表', '/organization/treeGrid', 'ajax'
 INSERT INTO `resource` VALUES ('142', '添加', '/organization/add', 'ajax', '部门添加', 'fi-page-add', '14', '0', '0', '1', '2014-02-19 01:00:00');
 INSERT INTO `resource` VALUES ('143', '编辑', '/organization/edit', 'ajax', '部门编辑', 'fi-page-edit', '14', '0', '0', '1', '2014-02-19 01:00:00');
 INSERT INTO `resource` VALUES ('144', '删除', '/organization/delete', 'ajax', '部门删除', 'fi-page-delete', '14', '0', '0', '1', '2014-02-19 01:00:00');
-INSERT INTO `resource` VALUES ('221', '日志监控', '', null, null, 'fi-folder', null, '2', '0', '0', '2015-12-01 11:44:20');
+INSERT INTO `resource` VALUES ('221', '日志监控', '', null, null, 'fi-folder', null, '99', '0', '0', '2015-12-01 11:44:20');
 INSERT INTO `resource` VALUES ('222', '视频教程', '', null, null, 'fi-folder', null, '1', '0', '0', '2015-12-06 12:40:42');
 INSERT INTO `resource` VALUES ('223', '官方网站', 'http://www.dreamlu.net/', 'iframe', null, 'fi-home', '222', '0', '0', '0', '2015-12-06 12:42:42');
 INSERT INTO `resource` VALUES ('224', 'jfinal视频', 'http://blog.dreamlu.net/blog/79', 'iframe', null, 'fi-video', '222', '1', '0', '0', '2015-12-06 12:45:28');
@@ -91,7 +91,10 @@ INSERT INTO `resource` VALUES ('226', '修改密码', '/user/editPwdPage', 'ajax
 INSERT INTO `resource` VALUES ('227', '登录日志', '/sysLog/manager', 'ajax', null, 'fi-info', '221', '0', '0', '0', '2016-09-30 22:10:53');
 INSERT INTO `resource` VALUES ('228', 'Druid监控', '/druid', 'iframe', null, 'fi-monitor', '221', '0', '0', '0', '2016-09-30 22:12:50');
 INSERT INTO `resource` VALUES ('229', '系统图标', '/icons.html', 'ajax', null, 'fi-photo', '221', '0', '0', '0', '2016-12-24 15:53:47');
-
+INSERT INTO `resource` VALUES ('3', '账号管理', '', null, '账号管理', 'fi-folder', null, '0', '0', '0', '2014-02-19 01:00:00');
+INSERT INTO `resource` VALUES ('31', '正常账号', '/account/normal', 'ajax', '正常账号管理', 'fi-database', '3', '1', '0', '0', '2014-02-19 01:00:00');
+INSERT INTO `resource` VALUES ('32', '异常账号', '/account/abnormal', 'ajax', '异常账号管理', 'fi-info', '3', '2', '0', '0', '2014-02-19 01:00:00');
+INSERT INTO `resource` VALUES ('33', '回收站', '/account/recycle', 'ajax', '回收站', 'fi-trash', '3', '3', '0', '0', '2014-02-19 01:00:00');
 -- ----------------------------
 -- Table structure for `role`
 -- ----------------------------
