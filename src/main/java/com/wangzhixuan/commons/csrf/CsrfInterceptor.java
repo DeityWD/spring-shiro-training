@@ -35,7 +35,10 @@ public class CsrfInterceptor extends HandlerInterceptorAdapter {
 		}
 		CsrfToken csrfToken = handlerMethod.getMethodAnnotation(CsrfToken.class);
 		// 判断是否含有@CsrfToken注解
-		if (null == csrfToken) {
+//		if (null == csrfToken) {
+//			return true;
+//		}
+		if (null != csrfToken) {  //报错，修改
 			return true;
 		}
 		// create、remove同时为true时异常

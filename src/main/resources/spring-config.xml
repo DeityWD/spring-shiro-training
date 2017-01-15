@@ -23,7 +23,7 @@
     <aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/>
     <context:annotation-config/>
     <!-- 扫描service -->
-    <context:component-scan base-package="com.wangzhixuan.service"/>
+    <context:component-scan base-package="com.wangzhixuan.service;com.chq.business"/>
 
     <import resource="classpath:spring/spring-mybatis.xml"/>
     <import resource="classpath:spring/spring-ehcache.xml"/>

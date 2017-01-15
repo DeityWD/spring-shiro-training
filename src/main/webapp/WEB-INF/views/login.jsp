@@ -29,10 +29,10 @@
             <span class="p_logo"></span>
             <input class="ipt" id="password" type="password" name="password" placeholder="请输入密码"/>
         </P>
-        <P style="padding: 10px 0px 10px; position: relative;">
-            <input class="captcha" type="text" name="captcha" placeholder="请输入验证码"/>
-            <img id="captcha" alt="验证码" src="${path }/captcha.jpg" data-src="${path }/captcha.jpg?t=" style="vertical-align:middle;border-radius:4px;width:94.5px;height:35px;cursor:pointer;">
-        </P>
+        <%--<P style="padding: 10px 0px 10px; position: relative;">--%>
+            <%--<input class="captcha" type="text" name="captcha" placeholder="请输入验证码"/>--%>
+            <%--<img id="captcha" alt="验证码" src="${path }/captcha.jpg" data-src="${path }/captcha.jpg?t=" style="vertical-align:middle;border-radius:4px;width:94.5px;height:35px;cursor:pointer;">--%>
+        <%--</P>--%>
         <P style="position: relative;text-align: left;">
             <input class="rememberMe" type="checkbox" name="rememberMe" value="1" checked style="vertical-align:middle;margin-left:40px;height:20px;"/> 记住密码
         </P>

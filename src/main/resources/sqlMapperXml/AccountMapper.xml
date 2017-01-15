@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chq.business.account.AccountMapper">
+    <resultMap id="BaseResultMap" type="com.chq.business.account.AccountEntity">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="password_login" property="passwordLogin" jdbcType="VARCHAR"/>
+        <result column="password_pay" property="passwordPay" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="password_email" property="passwordEmail" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="operator" property="operator" jdbcType="VARCHAR"/>
+        <result column="level" property="level" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="CHAR"/>
+        <result column="register_date" property="registerDate" jdbcType="TIMESTAMP"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="person_id" property="personId" jdbcType="VARCHAR"/>
+        <result column="person_name" property="personName" jdbcType="VARCHAR"/>
+        <result column="delete_reason" property="deleteReason" jdbcType="VARCHAR"/>
+        <result column="exception_reason" property="exceptionReason" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+        id, user_name as userName, password_login as passwordLogin, password_pay as passwordPay,
+         email, password_email as passwordEmail, area, operator, level, state,
+         register_date as registerDate, phone, address, person_id as personId, person_name as personName,
+         delete_reason as deleteReason, exception_reason as exceptionReason, create_date as createDate
+    </sql>
+
+    <select id="selectAccountPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from business_account
+        <where>
+            1=1
+            <if test=" userName != null and userName != '' ">
+                and user_name like CONCAT('%',#{userName},'%')
+            </if>
+            <if test=" email != null and email != '' ">
+                and email like CONCAT('%',#{email},'%')
+            </if>
+            <if test=" area != null and area != '' ">
+                and area like CONCAT('%',#{area},'%')
+            </if>
+            <if test=" state != null and state != '' ">
+                and state = #{state}
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+    <select id="selectByUserName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from business_account
+        <where>
+            user_name = #{userName}
+        </where>
+    </select>
+</mapper>

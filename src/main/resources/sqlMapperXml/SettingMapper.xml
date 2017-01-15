@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chq.business.setting.SettingMapper">
+    <resultMap id="BaseResultMap" type="com.chq.business.setting.SettingEntity">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="limit_shop" property="limitShop" jdbcType="INTEGER"/>
+        <result column="limit_good" property="limitGood" jdbcType="INTEGER"/>
+        <result column="limit_number" property="limitNumber" jdbcType="INTEGER"/>
+        <result column="limit_money" property="limitMoney" jdbcType="REAL"/>
+        <result column="limit_receipt_day" property="limitReceiptDay" jdbcType="INTEGER"/>
+        <result column="limit_register_day" property="limitRegisterDay" jdbcType="INTEGER"/>
+        <result column="limit_ip" property="limitIp" jdbcType="INTEGER"/>
+        <result column="limit_type" property="limitType" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, limit_shop as limitShop, limit_good as limitGood, limit_number as limitNumber, limit_money as limitMoney, limit_receipt_day as limitReceiptDay, limit_register_day as limitRegisterDay,
+        limit_ip as limitIp, limit_type as limitType
+    </sql>
+</mapper>
