@@ -49,3 +49,16 @@ CREATE TABLE `business_setting` (
 -- Records of business_setting  默认数据
 -- ----------------------------
 INSERT INTO `business_setting` VALUES ('1', '0', '0', '0', '0', '0', '0', '0', '0');
+
+-- ----------------------------
+-- Table structure for business_bankcard  银行卡管理表
+-- ----------------------------
+DROP TABLE IF EXISTS `business_bankcard`;
+CREATE TABLE `business_bankcard` (
+  `id` bigint(19) NOT NULL AUTO_INCREMENT,
+  `bank_name` varchar(100) DEFAULT NULL,
+  `bank_num` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `mark` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;

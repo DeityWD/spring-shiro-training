@@ -1,8 +1,9 @@
-package com.chq.business.type;
+package com.chq.business.shop;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.chq.business.goods.IGoodsService;
 import com.wangzhixuan.commons.base.BaseController;
 import com.wangzhixuan.commons.utils.PageInfo;
+import com.wangzhixuan.commons.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,14 +18,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by CHQ on 2017/1/14.
+ * Created by CHQ on 2017/1/15.
  */
 @Controller
-@RequestMapping("/type")
-public class TypeController extends BaseController {
+@RequestMapping("/shop")
+public class ShopController extends BaseController {
 
     @Autowired
-    private ITypeService typeService;
+    private IShopService shopService;
+    @Autowired
+    private IGoodsService goodsService;
 
     /**
      * 跳转到数据列表页面
@@ -33,13 +36,14 @@ public class TypeController extends BaseController {
      */
     @GetMapping(value = "/manager")
     public String manager() {
-        return "business/type/list";
+        return "business/shop/list";
     }
+
 
     /**
      * 获取分页列表
      *
-     * @param type
+     * @param shop
      * @param page
      * @param rows
      * @param sort
@@ -48,14 +52,20 @@ public class TypeController extends BaseController {
      */
     @PostMapping("/dataGrid")
     @ResponseBody
-    public Object dataGrid(TypeEntity type, Integer page, Integer rows, String sort, String order) {
+    public Object dataGrid(ShopEntity shop, Integer page, Integer rows, String sort, String order) {
         PageInfo pageInfo = new PageInfo(page, rows);
+        //查询条件
         Map<String, Object> condition = new HashMap<>();
+        if (StringUtils.isNotBlank(shop.getShopName())) {
+            condition.put("shopName", shop.getShopName());
+        }
+        if (StringUtils.isNotBlank(shop.getReceiptType())) {
+            condition.put("receiptType", shop.getReceiptType());
+        }
         pageInfo.setCondition(condition);
-        typeService.selectDataGrid(pageInfo);
+        shopService.selectDataGrid(pageInfo);
         return pageInfo;
     }
-
 
     /**
      * 跳转到新建页面
@@ -64,23 +74,23 @@ public class TypeController extends BaseController {
      */
     @GetMapping("/addPage")
     public String addPage() {
-        return "business/type/add";
+        return "business/shop/add";
     }
 
     /**
-     * 添加分类
+     * 添加
      *
-     * @param type
+     * @param shop
      * @return
      */
     @PostMapping("/add")
     @ResponseBody
-    public Object add(TypeEntity type) {
-        List<TypeEntity> types = this.typeService.selectByText(type);
-        if (!CollectionUtils.isEmpty(types)) {
-            return renderError("该分类已存在!");
+    public Object add(ShopEntity shop) {
+        List<ShopEntity> shops = this.shopService.selectByShopName(shop.getShopName(), null);
+        if (!CollectionUtils.isEmpty(shops)) {
+            return renderError("该店铺已存在！");
         }
-        this.typeService.insert(type);
+        this.shopService.insert(shop);
         return renderSuccess("添加成功");
     }
 
@@ -91,30 +101,30 @@ public class TypeController extends BaseController {
      */
     @GetMapping("/editPage")
     public String editPage(Long id, Model model) {
-        TypeEntity typeEntity = this.typeService.selectById(id);
-        model.addAttribute("type", typeEntity);
-        return "business/type/edit";
+        ShopEntity shop = this.shopService.selectById(id);
+        model.addAttribute("shop", shop);
+        return "business/shop/edit";
     }
 
     /**
-     * 编辑分类
+     * 编辑
      *
-     * @param type
+     * @param shop
      * @return
      */
     @PostMapping("/edit")
     @ResponseBody
-    public Object edit(TypeEntity type) {
-        List<TypeEntity> types = this.typeService.selectByText(type);
-        if (!CollectionUtils.isEmpty(types)) {
-            return renderError("该分类已存在!");
+    public Object edit(ShopEntity shop) {
+        List<ShopEntity> shops = this.shopService.selectByShopName(shop.getShopName(), shop.getId());
+        if (!CollectionUtils.isEmpty(shops)) {
+            return renderError("该店铺已存在！");
         }
-        this.typeService.updateSelectiveById(type);
+        this.shopService.updateSelectiveById(shop);
         return renderSuccess("添加成功");
     }
 
     /**
-     * 删除分类
+     * 删除
      *
      * @param id
      * @return
@@ -122,36 +132,18 @@ public class TypeController extends BaseController {
     @RequestMapping("/delete")
     @ResponseBody
     public Object delete(Long id) {
-        typeService.deleteById(id);
+        shopService.deleteById(id);
         return renderSuccess("删除成功！");
     }
 
     /**
-     * 获取所有分类
+     * 跳转到商品展示页面
      *
      * @return
      */
-    @RequestMapping("/getTypes")
-    @ResponseBody
-    public Object getTypes() {
-        TypeEntity type = new TypeEntity();
-        EntityWrapper<TypeEntity> wrapper = new EntityWrapper<>(type);
-        List<TypeEntity> types = typeService.selectList(wrapper);
-        return types;
-    }
-
-    /**
-     * 获取分类
-     *
-     * @param id
-     * @return
-     */
-    @RequestMapping("/getType")
-    @ResponseBody
-    public Object getType(Long id) {
-        if (null == id) {
-            return null;
-        }
-        return typeService.getTypeById(id);
+    @GetMapping("/goodsPage")
+    public String goodsPage(Long id, Model model) {
+        model.addAttribute("shopId", id);
+        return "business/goods/list";
     }
 }

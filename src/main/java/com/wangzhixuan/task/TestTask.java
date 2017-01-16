@@ -42,9 +42,9 @@ public class TestTask {
 //		redisTemplate.boundListOps("xxxx").leftPush("xxxx");
 		
 		// 测试注解
-		testService.selectById(1L);
-		testService.selectById(1L);
-		testService.selectById(1L);
+//		testService.selectById(1L);
+//		testService.selectById(1L);
+//		testService.selectById(1L);
 		
 		logger.debug(xx);
 		logger.debug(new Date());

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.chq.business.account.AccountEntity;
 import com.wangzhixuan.commons.utils.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class TypeServiceImpl extends SuperServiceImpl<TypeMapper, TypeEntity> im
 
     @Autowired
     private TypeMapper typeMapper;
-    
+
     @Override
     public void selectDataGrid(PageInfo pageInfo) {
         Page<TypeEntity> page = new Page<>(pageInfo.getNowpage(), pageInfo.getSize());
@@ -36,5 +37,12 @@ public class TypeServiceImpl extends SuperServiceImpl<TypeMapper, TypeEntity> im
             wrapper.where("id != {0}", entity.getId());
         }
         return this.selectList(wrapper);
+    }
+
+    @Cacheable(value = "hour", key = "#id")
+    @Override
+    public TypeEntity getTypeById(Long id) {
+
+        return typeMapper.selectById(id);
     }
 }

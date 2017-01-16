@@ -16,6 +16,8 @@ public class Result implements Serializable {
 
     private boolean success = false;
 
+    private boolean isError = false;
+
     private String msg = "";
 
     private Object obj = null;
@@ -44,4 +46,11 @@ public class Result implements Serializable {
         this.obj = obj;
     }
 
+    public boolean getIsError() {
+        return isError;
+    }
+
+    public void setIsError(boolean error) {
+        isError = error;
+    }
 }

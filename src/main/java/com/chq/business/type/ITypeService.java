@@ -13,4 +13,6 @@ public interface ITypeService extends ISuperService<TypeEntity> {
     void selectDataGrid(PageInfo pageInfo);
 
     List<TypeEntity> selectByText(TypeEntity entity);
+
+    TypeEntity getTypeById(Long id);
 }

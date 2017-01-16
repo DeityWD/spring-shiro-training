@@ -67,6 +67,7 @@ public abstract class BaseController {
     public Object renderError(String msg) {
         Result result = new Result();
         result.setMsg(msg);
+        result.setIsError(true);
         return result;
     }
 

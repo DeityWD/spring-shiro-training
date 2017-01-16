@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chq.business.shop.ShopMapper">
+    <resultMap id="BaseResultMap" type="com.chq.business.shop.ShopEntity">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="shop_name" property="shopName" jdbcType="VARCHAR"/>
+        <result column="payment" property="payment" jdbcType="REAL"/>
+        <result column="commission" property="commission" jdbcType="REAL"/>
+        <result column="commission_farming_app" property="commissionFarmingApp" jdbcType="REAL"/>
+        <result column="commission_farming_pc" property="commissionFarmingPc" jdbcType="REAL"/>
+        <result column="commission_receipt_evaluate" property="commissionReceiptEvaluate" jdbcType="REAL"/>
+        <result column="commission_receipt" property="commissionReceipt" jdbcType="REAL"/>
+        <result column="commission_evaluate" property="commissionEvaluate" jdbcType="REAL"/>
+        <result column="cooperate_date" property="cooperateDate" jdbcType="TIMESTAMP"/>
+        <result column="receipt_type" property="receiptType" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, shop_name as shopName, payment, commission, commission_farming_app as commissionFarmingApp, commission_farming_pc as commissionFarmingPc,
+        commission_receipt_evaluate as commissionReceiptEvaluate, commission_receipt as commissionReceipt, commission_evaluate as commissionEvaluate, cooperate_date as cooperateDate,
+        receipt_type as receiptType
+    </sql>
+
+    <select id="selectShopPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from business_shop
+        <where>
+            1=1
+            <if test=" shopName != null and shopName != '' ">
+                and shop_name like CONCAT('%',#{shopName},'%')
+            </if>
+            <if test=" receiptType != null and receiptType != '' ">
+                and receipt_type = #{receiptType}
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+    <select id="selectByShopName" resultMap="BaseResultMap" parameterType="hashmap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from business_shop
+        <where>
+            shop_name = #{shopName}
+            <if test=" id != null and id != '' ">
+                and id != #{id}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -57,7 +57,7 @@
                 $('.bankcard-easyui-linkbutton-edit').linkbutton({text: '编辑'});
                 $('.bankcard-easyui-linkbutton-del').linkbutton({text: '删除'});
             },
-            toolbar: '#typeToolbar'
+            toolbar: '#bankCardToolbar'
         });
     });
 
@@ -130,7 +130,7 @@
         <table id="bankcardDataGrid" data-options="fit:true,border:false"></table>
     </div>
 </div>
-<div id="typeToolbar" style="display: none;">
+<div id="bankCardToolbar" style="display: none;">
     <shiro:hasPermission name="/bankcard/add">
         <a onclick="addBankCardFun();" href="javascript:void(0);" class="easyui-linkbutton"
            data-options="plain:true,iconCls:'fi-plus icon-green'">添加</a>
