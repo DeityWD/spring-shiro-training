@@ -62,3 +62,40 @@ CREATE TABLE `business_bankcard` (
   `mark` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+
+-- ----------------------------
+-- Table structure for business_shop  店铺信息表
+-- ----------------------------
+DROP TABLE IF EXISTS `business_shop`;
+CREATE TABLE `business_shop` (
+  `id` bigint(19) NOT NULL AUTO_INCREMENT,
+  `shop_name` varchar(100) NOT NULL,
+  `payment` float DEFAULT NULL,
+  `commission` float DEFAULT NULL,
+  `commission_farming_app` float DEFAULT NULL,
+  `commission_farming_pc` float DEFAULT NULL,
+  `commission_receipt_evaluate` float DEFAULT NULL,
+  `commission_receipt` float DEFAULT NULL,
+  `commission_evaluate` float DEFAULT NULL,
+  `cooperate_date` datetime DEFAULT NULL,
+  `receipt_type` char(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+
+-- ----------------------------
+-- Table structure for business_goods  商品信息表
+-- ----------------------------
+DROP TABLE IF EXISTS `business_goods`;
+CREATE TABLE `business_goods` (
+  `id` bigint(19) NOT NULL AUTO_INCREMENT,
+  `goods_num` varchar(100) NOT NULL,
+  `goods_name` varchar(100) DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `type` bigint(19) DEFAULT NULL,
+  `type_limit` char(1) DEFAULT NULL,
+  `shop_id` bigint(19) NOT NULL,
+  `mark` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;

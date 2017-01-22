@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.wangzhixuan.commons.utils.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -42,5 +43,20 @@ public class GoodsServiceImpl extends SuperServiceImpl<GoodsMapper, GoodsEntity>
             wrapper.where("id != {0}", goods.getId());
         }
         return this.selectList(wrapper);
+    }
+    /**
+     * 检查商品是否存在
+     * @param goodsNum
+     * @return
+     */
+    @Override
+    public boolean checkGoodsByGoodsNum(String goodsNum) {
+        GoodsEntity goods = new GoodsEntity();
+        goods.setGoodsNum(goodsNum);
+        List<GoodsEntity> goodsList = selectByGoodsNum(goods);
+        if (CollectionUtils.isEmpty(goodsList)) {
+            return false;
+        }
+        return true;
     }
 }

@@ -186,4 +186,17 @@ public class UserController extends BaseController {
         userService.deleteUserById(id);
         return renderSuccess("删除成功！");
     }
+
+    /**
+     * 根据用户类型获取用户列表
+     *
+     * @param type
+     * @return
+     */
+    @RequestMapping("/getUsersByType")
+    @ResponseBody
+    public Object getUsersByType(Integer type) {
+        List<User> users = this.userService.getUsersByType(type);
+        return users;
+    }
 }

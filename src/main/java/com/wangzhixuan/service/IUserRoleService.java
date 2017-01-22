@@ -1,7 +1,7 @@
 package com.wangzhixuan.service;
 
-import com.wangzhixuan.model.UserRole;
 import com.baomidou.framework.service.ISuperService;
+import com.wangzhixuan.model.UserRole;
 
 /**
  *
@@ -9,6 +9,7 @@ import com.baomidou.framework.service.ISuperService;
  *
  */
 public interface IUserRoleService extends ISuperService<UserRole> {
+
 
 
 }

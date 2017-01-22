@@ -14,4 +14,6 @@ public interface IGoodsService extends ISuperService<GoodsEntity> {
     List<GoodsEntity> selectByShopId(Long shopId);
 
     List<GoodsEntity> selectByGoodsNum(GoodsEntity goods);
+
+    boolean checkGoodsByGoodsNum(String goodsNum);
 }

@@ -20,9 +20,7 @@ import com.wangzhixuan.model.vo.UserVo;
 import com.wangzhixuan.service.IUserService;
 
 /**
- *
  * User 表数据服务层接口实现类
- *
  */
 @Service
 public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implements IUserService {
@@ -31,7 +29,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
     private UserMapper userMapper;
     @Autowired
     private UserRoleMapper userRoleMapper;
-    
+
     @Override
     public List<User> selectByLoginName(UserVo userVo) {
         User user = new User();
@@ -48,7 +46,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         User user = BeanUtils.copy(userVo, User.class);
         user.setCreateTime(new Date());
         this.insert(user);
-        
+
         Long id = user.getId();
         String[] roles = userVo.getRoleIds().split(",");
         UserRole userRole = new UserRole();
@@ -72,7 +70,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
             user.setPassword(null);
         }
         this.updateSelectiveById(user);
-        
+
         Long id = userVo.getId();
         List<UserRole> userRoles = userRoleMapper.selectByUserId(id);
         if (userRoles != null && !userRoles.isEmpty()) {
@@ -117,4 +115,16 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         }
     }
 
+    /**
+     * 根据用户类型查询用户信息
+     * @param type
+     * @return
+     */
+    @Override
+    public List<User> getUsersByType(Integer type) {
+        User user = new User();
+        user.setUserType(type);
+        EntityWrapper<User> wrapper = new EntityWrapper<>(user);
+        return selectList(wrapper);
+    }
 }

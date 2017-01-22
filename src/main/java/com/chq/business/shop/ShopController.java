@@ -26,8 +26,7 @@ public class ShopController extends BaseController {
 
     @Autowired
     private IShopService shopService;
-    @Autowired
-    private IGoodsService goodsService;
+
 
     /**
      * 跳转到数据列表页面
@@ -120,7 +119,7 @@ public class ShopController extends BaseController {
             return renderError("该店铺已存在！");
         }
         this.shopService.updateSelectiveById(shop);
-        return renderSuccess("添加成功");
+        return renderSuccess("更新成功");
     }
 
     /**
