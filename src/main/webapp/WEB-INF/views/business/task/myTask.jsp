@@ -115,7 +115,12 @@
     }
 
     function executeTaskFun(id) {
-
+        parent.$.modalDialog({
+            title: '检查IP',
+            width: 800,
+            height: 520,
+            href: '${path }/task/toAccountList?taskId=' + id
+        });
     }
 
     function checkIPFun() {
@@ -157,8 +162,8 @@
                             <option value="">全部</option>
                             <option value="0">下单任务</option>
                             <option value="1">收货且评价</option>
-                            <option value="0">收货任务</option>
-                            <option value="1">评价任务</option>
+                            <option value="2">收货任务</option>
+                            <option value="3">评价任务</option>
                         </select>
                         <a href="javascript:void(0);" class="easyui-linkbutton"
                            data-options="iconCls:'fi-magnifying-glass',plain:true" onclick="searchTaskFun();">查询</a>

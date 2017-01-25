@@ -1,5 +1,7 @@
 package com.chq.business.task;
 
+import com.chq.business.account.AccountEntity;
+import com.chq.business.account.IAccountService;
 import com.chq.business.goods.IGoodsService;
 import com.chq.business.setting.ISettingService;
 import com.chq.business.setting.SettingEntity;
@@ -32,6 +34,9 @@ public class TaskController extends BaseController {
 
     @Autowired
     private ISettingService settingService;
+
+    @Autowired
+    private IAccountService accountService;
 
 
     /**
@@ -271,5 +276,31 @@ public class TaskController extends BaseController {
             }
         }
         return renderSuccess("请设置疲劳度信息");
+    }
+
+
+    /**
+     * 跳转到可用账号数据列表页面
+     *
+     * @return
+     */
+    @GetMapping(value = "/toAccountList")
+    public String toAccountList(String taskId, Model model) {
+        model.addAttribute("taskId", taskId);
+        return "business/task/accountList";
+    }
+
+    /**
+     * 跳转到执行任务页面
+     *
+     * @return
+     */
+    @GetMapping(value = "/toExecuteTask")
+    public String toExecuteTask(Long taskId, Long accountId, Model model) {
+        TaskEntity task = this.taskService.selectById(taskId);
+        AccountEntity account = this.accountService.selectById(accountId);
+        model.addAttribute("task", task);
+        model.addAttribute("account", account);
+        return "business/task/execute1";
     }
 }

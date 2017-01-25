@@ -1,5 +1,6 @@
 package com.chq.business.bankcard;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.chq.business.type.TypeEntity;
 import com.wangzhixuan.commons.base.BaseController;
 import com.wangzhixuan.commons.utils.PageInfo;
@@ -121,5 +122,19 @@ public class BankCardController extends BaseController {
     public Object delete(Long id) {
         bankCardService.deleteById(id);
         return renderSuccess("删除成功！");
+    }
+
+    /**
+     * 获取所有银行卡
+     *
+     * @return
+     */
+    @RequestMapping("/getBankCards")
+    @ResponseBody
+    public Object getBankCards() {
+        BankCardEntity card = new BankCardEntity();
+        EntityWrapper<BankCardEntity> wrapper = new EntityWrapper<>(card);
+        List<BankCardEntity> cards = bankCardService.selectList(wrapper);
+        return cards;
     }
 }
